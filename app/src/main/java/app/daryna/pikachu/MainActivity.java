@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
         mp1 = MediaPlayer.create(this, R.raw.picapica);
         mp2 = MediaPlayer.create(this, R.raw.picacu);
-        mp3 = MediaPlayer.create(this, R.raw.picachuuuuuu2);
+        mp3 = MediaPlayer.create(this, R.raw.picachuuuuuu3);
 
         mGifPika = (GifImageView)findViewById(R.id.gif_pika);
         try {
