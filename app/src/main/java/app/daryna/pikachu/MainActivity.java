@@ -7,8 +7,6 @@ import android.gesture.GestureLibrary;
 import android.gesture.GestureOverlayView;
 import android.gesture.GestureOverlayView.OnGesturePerformedListener;
 import android.gesture.Prediction;
-import android.graphics.Bitmap;
-import android.graphics.BlurMaskFilter;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -17,14 +15,10 @@ import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 import com.felipecsl.gifimageview.library.GifImageView;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener, OnGesturePerformedListener {
@@ -35,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private Sensor mAccelerometer;
     private final float NOISE = (float) 4.0;
     private MediaPlayer mp1, mp2, mp3;
-    private GifImageView mGifPika,mGifPikachu, mGifPikachuu;
+    private GifImageView mGifPika;
     InputStream stream;
 
     GestureLibrary gestureLibrary = null;
@@ -46,18 +40,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        Button pica = (Button) findViewById(R.id.pika);
-//        Button picachu = (Button) findViewById(R.id.pikachu);
-//        pica.setOnClickListener(this);
-//        picachu.setOnClickListener(this);
-
         gestureOverlayView = (GestureOverlayView) findViewById(R.id.gestures);
-
         gestureLibrary = GestureLibraries.fromRawResource(this, R.raw.gesture);
         gestureLibrary.load();
-
         gestureOverlayView.addOnGesturePerformedListener(this);
-
         mInitialized = false;
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -96,21 +82,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         // and then we can return your byte array.
         return byteBuffer.toByteArray();
     }
-//    @Override
-//    public void onClick(View view) {
-//        if (!(mp1.isPlaying() || mp2.isPlaying())) {
-//            switch (view.getId()) {
-//                case R.id.pika:
-//
-//                    mp1.start();
-//            break;
-//                case R.id.pikachu:
-//                    mp2.start();
-//                    break;
-//            }
-//        }
-//    }
-
 
     protected void onResume() {
         super.onResume();
